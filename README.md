@@ -58,6 +58,6 @@ While not essential for using `pytest`, this repo includes a demonstration of Vi
 * [Part 2: Creating Tests](./tests/2_creating_tests/README.md)
 * [Part 3: How to Run a Test](./tests/3_running_tests/README.md)
 * [Part 4: Visual Studio Code Test Explorer Integration](./tests/4_vs_code_integration/README.md)
-* [Part 5: Fixtures](./tests/5_fixtures/README.md)
-* [Part 6: Parameterized Tests](./tests/6_parametrized_tests/README.md)
+* [Part 5: Parametrized Tests](./tests/5_parametrized_tests/README.md)
+* [Part 6: Fixtures](./tests/6_fixtures/README.md)
 * [Part 7: Expected Exceptions](./tests/7_exceptions/README.md)

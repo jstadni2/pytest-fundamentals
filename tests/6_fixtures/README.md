@@ -1,4 +1,4 @@
-# Part 5: Fixtures
+# Part 6: Fixtures
 * Fixture functions are used to provide test context
 * Tests can request multiple fixtures
 * Fixtures defined in `conftest.py` can be used by any test in its directory
