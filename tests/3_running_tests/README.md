@@ -28,7 +28,7 @@ pytest tests/2_creating_tests/test_math_operations.py::TestAddNumbers::test_posi
 * Recurse into directories, search for `test_*.py` or `*_test.py` files
 * Collect `test` prefixed functions or methods inside `Test` prefixed test classes
 * Test discovery can be [customized](https://docs.pytest.org/en/latest/example/pythoncollection.html)
-* Test files might need unique names, otherwise could produce test discovery error
+* Test files might need unique names, otherwise could produce test discovery error (depending on the [import mode](https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html#choosing-an-import-mode))
 
 ## Custom Markers
 * [Custom markers](https://docs.pytest.org/en/7.3.x/example/markers.html) can be used to run/skip tests that are slow or rely on external resources
