@@ -27,9 +27,9 @@ class TestClassDemoInstance:
     y = 10
     def test_one(self):
         self.x = 10
-        assert add_numbers(self.x,  self.y) == 20
+        assert add_numbers(self.x, self.y) == 20
     
     # Each test has a unique instance of the class
     def test_two(self):
-        assert add_numbers( self.x,  self.y) == 15
+        assert add_numbers(self.x, self.y) == 15
         assert self.x == 5
