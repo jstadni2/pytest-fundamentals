@@ -38,5 +38,5 @@ def test_registration(john_smith):
 @pytest.mark.gui
 def test_view_my_profile(webdriver, john_smith):
     html = webdriver.login(john_smith)
-    welcome = f"Welcome {john_smith['first_name']} {john_smith['last_name']}!"
-    assert welcome in html 
+    expected_welcome = f"Welcome {john_smith['first_name']} {john_smith['last_name']}!"
+    assert expected_welcome in html 
