@@ -5,7 +5,7 @@
   if not expression1: raise AssertionError(expression2)
   ```
 * Can group tests in classes, but `pytest` also provides more flexible grouping features
-* We'll cover how to write DRY tests using fixtures and parametrized tests
+* We'll cover how to write DRY tests using parametrized tests and fixtures
 
 ## Testing Directory Structure
 Two recommended ways to structure your tests:
