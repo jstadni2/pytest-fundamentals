@@ -34,4 +34,4 @@ src/mypkg/
         ...
 ```
 * Can encounter `ImportError` when importing source modules into test scripts without proper test layout and pythonpath/import config
-* More info on test directory structure can be found in [`pytest` documentation](https://docs.pytest.org/en/7.4.x/explanation/goodpractices.html) and [stack overflow](https://stackoverflow.com/a/50610630)
+* More info on test directory structure can be found in [`pytest` documentation](https://docs.pytest.org/en/8.0.x/explanation/goodpractices.html) and [stack overflow](https://stackoverflow.com/a/50610630)

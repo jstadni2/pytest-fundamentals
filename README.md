@@ -1,5 +1,5 @@
 # Automated Software Testing with Pytest
-This repository provides an interactive introduction to the [pytest](https://docs.pytest.org/en/7.4.x/index.html) testing framework for Python.
+This repository provides an interactive introduction to the [pytest](https://docs.pytest.org/en/8.0.x/index.html) testing framework for Python.
 
 ## Installation
 The recommended way to install this repo is through git, which can be downloaded 

@@ -21,10 +21,10 @@ pytest tests/1_pytest_vs_unittest/test_pytest.py
 ```
 * Verbosity can be increased via the flags `-v` or `--verbose`
 
-* Visit the [CLI Reference](https://docs.pytest.org/en/7.4.x/reference/reference.html#command-line-flags) or run `pytest --help` to learn more
+* Visit the [CLI Reference](https://docs.pytest.org/en/8.0.x/reference/reference.html#command-line-flags) or run `pytest --help` to learn more
 
 ### Features
-* 1000+ plugins listed on [pytest.org](https://docs.pytest.org/en/7.4.x/reference/plugin_list.html)
+* 1000+ plugins listed on [pytest.org](https://docs.pytest.org/en/8.0.x/reference/plugin_list.html)
 * Its test runner can be used to run unittest suites
 ```
 pytest -v tests/1_pytest_vs_unittest/test_unittest.py
