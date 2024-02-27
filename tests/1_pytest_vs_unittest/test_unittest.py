@@ -4,7 +4,7 @@ from demos.math_operations import add_numbers, MathOperations
 
 # EXAMPLE 1
 
-class TestMathOperations(unittest.TestCase):
+class TestAddNumbers(unittest.TestCase):
     def test_add_numbers(self):
         self.assertEqual(add_numbers(5, 10), 15)
         self.assertEqual(add_numbers(-1, 1), 0)
