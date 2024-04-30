@@ -7,5 +7,5 @@ class APIClient:
     def get(self):
         return requests.get(self.API)   
 
-    def get_students(self):
-        return requests.get(f'{self.API}students/')
+    def post(self, data):
+        return requests.post(f'{self.API}record/', data)
