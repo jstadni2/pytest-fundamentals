@@ -56,6 +56,24 @@ def test_post_mocked(mock_requests):
 
     # Confirm that the request-response cycle completed successfully
     assert response.status_code == 202
+    # What if we want requests.Response?
+    assert isinstance(response, MockResponse)
+
+
+def test_autospec_response(mocker):
+    """Use requests.Response spec for mock_response instead of MockResponse.
+    """
+    mock_response = mocker.create_autospec(spec=requests.Response)
+    mock_response.status_code = 404
+    mocker.patch('requests.get', return_value=mock_response)
+    
+    # Send a request to the API server and store the response
+    api_client = APIClient()
+    response = api_client.get()
+
+    # Confirm that the request-response cycle completed successfully
+    assert response.status_code == 404
+    assert isinstance(response, requests.Response)
 
 
 # Example with uncaught spelling error
@@ -94,6 +112,6 @@ def test_mock_mispelled_attribute_spec_set(mocker):
     assert response.status_cod == 200
 
 
-# TODO: Use unittest.mock.Mock.assert_called)
+# TODO: Use unittest.mock.Mock.assert_called..
 
 # TODO: Use pytest-mock spy
