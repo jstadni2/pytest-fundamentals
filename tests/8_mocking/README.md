@@ -24,3 +24,8 @@ pytest tests/8_mocking/test_monkeypatch.py -k "not api"
 
 ## `pytest-mock`
 - `mock` is included in the Python standard libary as `unittest.mock`
+
+
+# REFERENCE
+
+[auto-speccing](https://docs.python.org/3/library/unittest.mock.html#auto-speccing)

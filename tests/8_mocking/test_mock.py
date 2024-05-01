@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 from demos.api_lib import APIClient 
 
@@ -25,13 +26,12 @@ class MockResponse:
 
 
 @pytest.fixture
-def mock_client(mocker):
+def mock_requests(mocker):
     def mock_get(*args, **kwargs):
-        """APIClient.get() mocked to return {'mock_key':'mock_response'}."""
+        """requests.get() mocked to return {'mock_key':'mock_response'}."""
         return MockResponse(200)
 
     def mock_post(*args, **kwargs):
-
         return MockResponse(202)
 
     # pytest-mock has a very similar interface to monkeypatch
@@ -39,7 +39,7 @@ def mock_client(mocker):
     mocker.patch("requests.post", mock_post)
     
 
-def test_get_mocked(mock_client):
+def test_get_mocked(mock_requests):
     # Send a request to the API server and store the response
     api_client = APIClient()
     response = api_client.get()
@@ -49,7 +49,7 @@ def test_get_mocked(mock_client):
     assert response.json() == {"mock_key": "mock_response"}
     
 
-def test_post_mocked(mock_client):
+def test_post_mocked(mock_requests):
     # Send a request to the API server and store the response
     api_client = APIClient()
     response = api_client.post({'key': 'value'})
@@ -58,6 +58,42 @@ def test_post_mocked(mock_client):
     assert response.status_code == 202
 
 
-# TODO: Use MagicMock in this example
+# Example with uncaught spelling error
+def test_mock_mispelled_attribute(mocker):
+    # Create a mock response object
+    mock_response = mocker.Mock(spec=requests.Response, autospec=True) # What does autospec actually do?
+    
+    # Whoops, misspelled attribute!
+    mock_response.status_cod = 200
+    
+    # Patch requests.get() to return the mock response
+    mocker.patch('requests.get', return_value=mock_response)
+    
+    api_client = APIClient()
+    response = api_client.get()
+    
+    # Should this fail?
+    assert response.status_cod == 200
 
 
+# spec_set argument helps ensure the mock matches the API of the original class
+def test_mock_mispelled_attribute_spec_set(mocker):
+    # Attempting to set attributes that don’t exist on the spec object
+    # will raise an AttributeError.
+    mock_response = mocker.Mock(spec=requests.Response, spec_set=True)
+    
+    # Whoops, misspelled attribute!
+    mock_response.status_cod = 200
+    
+    mocker.patch('requests.get', return_value=mock_response)
+    
+    api_client = APIClient()
+    response = api_client.get()
+    
+    # NOW this fails
+    assert response.status_cod == 200
+
+
+# TODO: Use unittest.mock.Mock.assert_called)
+
+# TODO: Use pytest-mock spy
