@@ -65,16 +65,21 @@ def test_autospec_response(mocker):
     """Use requests.Response spec for mock_response instead of MockResponse.
     """
     mock_response = mocker.create_autospec(spec=requests.Response)
-    mock_response.status_code = 404
-    mocker.patch('requests.get', return_value=mock_response)
+    mock_response.status_code = 202
+    mock_response.json.return_value = {"mock_key": "mock_response"}
+    mocker.patch('requests.post', return_value=mock_response)
     
-    # Send a request to the API server and store the response
     api_client = APIClient()
-    response = api_client.get()
+    response = api_client.post({'key': 'value'})
 
     # Confirm that the request-response cycle completed successfully
-    assert response.status_code == 404
     assert isinstance(response, requests.Response)
+    assert response.status_code == 202
+    assert response.json() == {"mock_key": "mock_response"}
+
+    # unittest.mock.Mock comes with its own methods for tracking usage
+    mock_response.json.assert_called()
+    assert mock_response.json.call_count == 1
 
 
 # Example with uncaught spelling error
@@ -113,7 +118,7 @@ def test_mock_mispelled_attribute_spec_set(mocker):
     assert response.status_cod == 200
 
 
-def test_strict_autospec_usage(mocker):
+def test_strict_autospec(mocker):
     mock_response = mocker.create_autospec(requests.Response, spec_set=True)
     # Properties must be attached to the mock type object
     type(mock_response).status_code = PropertyMock(return_value=202)
@@ -129,7 +134,3 @@ def test_strict_autospec_usage(mocker):
     assert isinstance(response, requests.Response)
     assert response.status_code == 202
     assert response.json() == {"mock_key": "mock_response"}
-
-    # Mock comes with its own methods for tracking usage
-    mock_response.json.assert_called()
-    assert mock_response.json.call_count == 1
