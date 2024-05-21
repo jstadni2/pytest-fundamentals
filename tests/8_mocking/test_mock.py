@@ -1,5 +1,6 @@
 import pytest
 import requests
+from unittest.mock import PropertyMock
 
 from demos.api_lib import APIClient 
 
@@ -79,7 +80,7 @@ def test_autospec_response(mocker):
 # Example with uncaught spelling error
 def test_mock_mispelled_attribute(mocker):
     # Create a mock response object
-    mock_response = mocker.Mock(spec=requests.Response, autospec=True) # What does autospec actually do?
+    mock_response = mocker.Mock(spec=requests.Response)
     
     # Whoops, misspelled attribute!
     mock_response.status_cod = 200
@@ -112,6 +113,23 @@ def test_mock_mispelled_attribute_spec_set(mocker):
     assert response.status_cod == 200
 
 
-# TODO: Use unittest.mock.Mock.assert_called..
+def test_strict_autospec_usage(mocker):
+    mock_response = mocker.create_autospec(requests.Response, spec_set=True)
+    # Properties must be attached to the mock type object
+    type(mock_response).status_code = PropertyMock(return_value=202)
+    # Set the return value of Response.json()
+    mock_response.json.return_value = {"mock_key": "mock_response"}
 
-# TODO: Use pytest-mock spy
+    mocker.patch('requests.post', return_value=mock_response)
+    
+    api_client = APIClient()
+    response = api_client.post({'key': 'value'})
+
+    # Confirm that the request-response cycle completed successfully
+    assert isinstance(response, requests.Response)
+    assert response.status_code == 202
+    assert response.json() == {"mock_key": "mock_response"}
+
+    # Mock comes with its own methods for tracking usage
+    mock_response.json.assert_called()
+    assert mock_response.json.call_count == 1

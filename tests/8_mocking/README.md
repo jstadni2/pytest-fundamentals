@@ -1,6 +1,8 @@
 # Part 8: Mocking APIs
+What is a mock?
+
 Why mock an external API?
-- Create test how your code handles various responses expected from the external API
+- Create isolated tests for how your code handles various responses expected from the external API
 - You can still run your test suites when the external API is down
 - Avoid costs if the external API charges per use
 - Test suite functionality is isolated from external data
@@ -24,6 +26,14 @@ pytest tests/8_mocking/test_monkeypatch.py -k "not api"
 
 ## `pytest-mock`
 - `mock` is included in the Python standard libary as `unittest.mock`
+- [Mock.assert_called... methods](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called)
+- [unittest.mock.PropertyMock](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.PropertyMock)
+
+
+# Other Python packages for common use cases of mocking
+- [Responses: mocking the Python Requests library](https://github.com/getsentry/responses)
+- [kevin1024/vcrpy: Automatically mock your HTTP interactions to simplify and speed up testing](https://github.com/kevin1024/vcrpy)
+- [FreezeGun: mocking the datetime module](https://github.com/spulec/freezegun)
 
 
 # REFERENCE
