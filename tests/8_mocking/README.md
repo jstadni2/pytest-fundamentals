@@ -9,33 +9,30 @@ Why mock an external API?
 - Can perform internal integration tests
 
 
-There are two methods of mocking with Pytest fixtures:
-  1. monkeypatch: fixture included with base pytest
-  2. pytest-mock: pytest plugin that provides a thin-wrapper around the [`mock package`]()
-
+There are two methods of mocking with Pytest fixtures.
 
 ## `monkeypatch`
+- [`monkeypatch`](https://docs.pytest.org/en/latest/how-to/monkeypatch.html) is the mocking fixture included with base pytest
+
 Mock an external API
 
 ```
 pytest tests/8_mocking/test_monkeypatch.py -k "not api"
 ```
 
-### Context manager implementation
-
-
 ## `pytest-mock`
-- `mock` is included in the Python standard libary as `unittest.mock`
-- [Mock.assert_called... methods](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called)
-- [unittest.mock.PropertyMock](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.PropertyMock)
+- [`mock`](https://docs.python.org/3/library/unittest.mock.html) is a more feature-rich module included in the Python standard libary as `unittest.mock`
+- The [`pytest-mock`](https://pytest-mock.readthedocs.io/en/latest/) plugin provides a `mocker` fixture as a wrapper for the `mock` package
+### Installation
+```
+pip install pytest-mock
+```
+### Additional Features
+- [Autospeccing](https://docs.python.org/3/library/unittest.mock.html#autospeccing)
+- Mock [usage tracking methods](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called)
+- Enforce mock parity with `spec_set` argument
 
-
-# Other Python packages for common use cases of mocking
+## Other Python packages for common mocking use cases 
 - [Responses: mocking the Python Requests library](https://github.com/getsentry/responses)
-- [kevin1024/vcrpy: Automatically mock your HTTP interactions to simplify and speed up testing](https://github.com/kevin1024/vcrpy)
+- [vcrpy: Automatically mock your HTTP interactions to simplify and speed up testing](https://github.com/kevin1024/vcrpy)
 - [FreezeGun: mocking the datetime module](https://github.com/spulec/freezegun)
-
-
-# REFERENCE
-
-[auto-speccing](https://docs.python.org/3/library/unittest.mock.html#auto-speccing)
