@@ -4,7 +4,9 @@ import requests
 from demos.api_lib import APIClient 
 
 
-@pytest.mark.api
+# Calling external APIs can result in flaky tests
+# Can exclude them from CI/CD pipeline by marking them
+@pytest.mark.externalapi
 def test_get():
     """This will fail if the external API is down or access is restricted.
     """
@@ -17,7 +19,7 @@ def test_get():
     assert response.ok
 
 
-# Custom class to be the mock return values of APIClient
+# Custom class to mock return values of APIClient
 class MockResponse:
     def __init__(self, status_code):
         """Initialize MockResponse with a given status code.

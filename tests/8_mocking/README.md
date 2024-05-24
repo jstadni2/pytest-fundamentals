@@ -1,24 +1,23 @@
 # Part 8: Mocking APIs
 What is a mock?
+- An object that mimics its production counterpart in a controlled way
 
 Why mock an external API?
 - Create isolated tests for how your code handles various responses expected from the external API
 - You can still run your test suites when the external API is down
-- Avoid costs if the external API charges per use
+- Avoid costs if the external API charges usage fees
 - Test suite functionality is isolated from external data
 - Can perform internal integration tests
-
 
 There are two methods of mocking with Pytest fixtures.
 
 ## `monkeypatch`
 - [`monkeypatch`](https://docs.pytest.org/en/latest/how-to/monkeypatch.html) is the mocking fixture included with base pytest
-
-Mock an external API
-
-```
-pytest tests/8_mocking/test_monkeypatch.py -k "not api"
-```
+- Provides helper methods for setting/deleting:
+  - Attributes
+  - Dictionary items
+  - Environment variables
+- Can also modify `sys.path` for importing and change current working directory
 
 ## `pytest-mock`
 - [`mock`](https://docs.python.org/3/library/unittest.mock.html) is a more feature-rich module included in the Python standard libary as `unittest.mock`
