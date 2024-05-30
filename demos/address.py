@@ -9,7 +9,7 @@ def parse_address(address):
     }
     
     # Parse address line 2 if provided
-    if len(split_address) == 5:
-        address_dict['address_line_2'] = split_address[1]
+    # if len(split_address) == 5:
+    #     address_dict['address_line_2'] = split_address[1]
     
     return address_dict
