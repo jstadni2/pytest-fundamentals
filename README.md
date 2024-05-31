@@ -61,3 +61,4 @@ While not essential for using `pytest`, this repo includes a demonstration of Vi
 * [Part 5: Parametrized Tests](./tests/5_parametrized_tests/README.md)
 * [Part 6: Fixtures](./tests/6_fixtures/README.md)
 * [Part 7: Expected Exceptions](./tests/7_exceptions/README.md)
+* [Part 8: Mocking APIs](./tests/8_mocking/README.md)
